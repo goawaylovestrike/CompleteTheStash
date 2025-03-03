@@ -1,0 +1,62 @@
+name: CompleteTheStash
+description: Finds missing scenes for selected performers and creates missing scene metadata to another missing Stash instance. You can use either StashDB or TPDB or both as a source for missing scenes.
+version: 0.6.3
+url: https://github.com/MinasukiHikimuna/MidnightRider-Stash/
+exec:
+  - python
+  - "{pluginDir}/CompleteTheStash.py" # Adjust to your script's name and location
+interface: raw
+# Uncomment the following hooks if you want missing scenes to be updated
+# whenever you update scenes in the main Stash. Note that this will cause each
+# scene update to take a couple of seconds, which is significantly longer than
+# without these hooks. The slowdown is due to each scene update starting the
+# plugin separately and connecting to multiple Stash instances.
+#
+# hooks:
+#   - name: PerformerCompare
+#     description: Removes scene from missing Stash if a match is found in local Stash.
+#     triggeredBy:
+#       - Scene.Create.Post
+#       - Scene.Update.Post
+tasks:
+  - name: Complete The Stash!
+    description: Create missing scenes of performers to another Stash instance
+    defaultArgs:
+      mode: process_performers
+settings:
+  missingStashAddress:
+    displayName: StashDB - Missing Stash URL
+    description: URL of the Stash app instance where missing scenes from StashDB are created.
+    type: STRING
+  missingStashApiKey:
+    displayName: StashDB - Missing Stash API key
+    description: API key of the Stash app instance where missing scenes from StashDB are created.
+    type: STRING
+  missingStashTpdbAddress:
+    displayName: TPDB - Missing Stash URL
+    description: URL of the Stash app instance where missing scenes from TPDB are created.
+    type: STRING
+  missingStashTpdbApiKey:
+    displayName: TPDB - Missing Stash API key
+    description: API key of the Stash app instance where missing scenes from TPDB are created.
+    type: STRING
+  missingFansDBAddress:
+    displayName: FansDB - Missing Stash URL
+    description: URL of the Stash app instance where missing scenes from TPDB are created.
+    type: STRING
+  missingFansDBbApiKey:
+    displayName: FansDB - Missing Stash API key
+    description: API key of the Stash app instance where missing scenes from TPDB are created.
+    type: STRING    
+  performerTags:
+    displayName: Include performers with tags
+    description: Tags of the performers selected for processing. Separate multiple tags with commas.
+    type: STRING
+  sceneExcludeTags:
+    displayName: Exclude scenes with tags
+    description: Tags of the scenes to exclude from processing, e.g. Compilation. Separate multiple tags with commas.
+    type: STRING
+  enableSceneHooks:
+    displayName: Enable scene hooks
+    description: Enable the scene hooks. This will remove missing scenes from the missing Stash instances automatically when scenes are created or updated in the local Stash instance. Note that this will significantly decrease performance as every scene update will trigger a hook which takes a couple of seconds.
+    type: BOOLEAN

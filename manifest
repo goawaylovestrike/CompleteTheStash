@@ -1,0 +1,24 @@
+id: CompleteTheStash
+name: CompleteTheStash
+metadata:
+  description: Finds missing scenes for selected performers and creates missing scene
+    metadata to another missing Stash instance. You can use either StashDB or TPDB
+    or both as a source for missing scenes.
+version: 0.6.3-5b04439
+date: "2025-01-05 05:49:52"
+requires: []
+source_repository: https://minasukihikimuna.github.io/MidnightRider-Stash/index.yml
+files:
+- .template-stash\local-config.txt
+- .template-stash\missing-stashdb-config.txt
+- .template-stash\missing-tpdb-config.txt
+- StashboxClient.py
+- StashCompleter.py
+- MissingStashClient.py
+- StashDbClient.py
+- LocalStashClient.py
+- TpdbClient.py
+- README.md
+- .manifestignore
+- CompleteTheStash.yml
+- CompleteTheStash.py
